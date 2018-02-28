@@ -19,7 +19,6 @@ app = GitWebhook(host="127.0.0.1", port=8080)
 
 @app.event(repository="oqwa/gwh", types=['push'], branches=['dev'])
 def event():
-    print("Pushed!")
     print(app.event_repository)
     print(app.event_type)
     print(app.pushed_branch)
