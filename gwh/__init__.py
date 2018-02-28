@@ -5,7 +5,7 @@ import os
 from flask import Flask, request
 
 
-__version__ = "0.1.4"
+__version__ = "0.1.5"
 __all__ = ['GitWebhook']
 
 
@@ -59,8 +59,8 @@ class GitWebhook:
             return f
         return decorator
 
-    def run(self):
-        self._app.run(host=self._host, port=self._port)
+    def run(self, **kwargs):
+        self._app.run(host=self._host, port=self._port, **kwargs)
 
     def add_handler(self, repository, type, branches, f):
         if repository is None:
