@@ -5,7 +5,6 @@ This is a simple Flask tool that will help you handle Git webhooks. Now it suppo
 
 Installation
 ---
-Run this commands in your terminal:
 ```
 pip install gwh
 ```

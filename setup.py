@@ -5,7 +5,7 @@ setup(
     name="gwh",
     version=__import__('gwh').__version__,
     keywords="git webhook flask bitbucket",
-    description="Simple Flask app for handling Git webhooks from different services",
+    description="Tool for handling Git webhooks based on Flask",
     long_description=open(join(dirname(__file__), 'README.md')).read(),
     platforms="any",
     author="oqwa",
