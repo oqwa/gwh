@@ -47,7 +47,7 @@ class GitWebhook:
             "bitbucket": BitbucketParser()
         }
 
-    def event(self, repository=None, types=None):
+    def handle(self, repository=None, types=None):
 
         """
         Decorator to define event handler
