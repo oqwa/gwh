@@ -22,10 +22,10 @@ def check_bitbucket_webhook(app, event_type, repository, branch, hit_expected=Fa
     data = '{"%s": {"changes": [{"old": {"type": "branch", "name": "%s"}, "new": {"type": "branch", ' \
            '"name": "%s"}}]},"repository": {"full_name": "%s"}}' % (event_type, branch, branch, repository)
 
-    app.handle_request({
+    assert app.handle_request({
         "X_EVENT_KEY": "repo:{}".format(event_type),
         "User-Agent": "Bitbucket-Webhooks/2.0"
-    }, data.encode())
+    }, data.encode()) == hit_expected
 
     if hit_expected:
         assert app.event == build_event(event_type, repository, branch, json.loads(data))
