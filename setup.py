@@ -22,7 +22,7 @@ setup(
         "Operating System :: OS Independent",
         "Programming Language :: Python"
     ],
-    setup_requires=['pytest', 'pytest-runner', 'pytest-flask'],
+    setup_requires=['pytest-runner', 'pytest-flask'],
     tests_require=['pytest'],
     zip_safe=False
 )
