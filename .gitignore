@@ -2,3 +2,5 @@
 dist
 gwh.egg-info
 __pycache__
+.eggs
+.pytest_cache
