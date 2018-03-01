@@ -16,12 +16,12 @@ import gwh
 
 app = GitWebhook(host="127.0.0.1", port=8080)
 
-@app.event(repository="oqwa/gwh", types=['push'], branches=['dev'])
+@app.event(repository="oqwa/gwh", types=['push'])
 def event():
-    print(app.event_repository)
-    print(app.event_type)
-    print(app.pushed_branch)
-    print(app.event_data)
+    print(app.event['repository'])
+    print(app.event['type'])
+    print(app.event['affected_branches'])
+    print(app.event['raw_data'])
 
 app.run()
 ``` 
