@@ -2,7 +2,7 @@ import logging
 import json
 
 
-__version__ = "0.1.9"
+__version__ = "0.1.10"
 __all__ = ['GitWebhook']
 
 
@@ -140,8 +140,7 @@ class GitWebhook:
             return True
         except:
             logging.exception("Uncaught exception when request handling")
-
-        return ""
+            return False
 
     def _get_parser(self, headers, body):
 
