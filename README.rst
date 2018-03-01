@@ -1,7 +1,7 @@
 GitWebHook
 ==========
 
-This is a simple Flask tool that will help you handle Git webhooks. Now it supports the following services:
+This is a simple tool that will help you handle Git webhooks. Now it supports the following services:
 
 * Bitbucket
 
@@ -14,23 +14,44 @@ Installation
     pip install gwh
 
 
-Basic usage
+Usage cases
 -----------
+
+If you want to handle any event from any repository:
 
 .. code-block:: python
 
-    import gwh
+    from gwh import GitWebhook
 
-    app = GitWebhook(host="127.0.0.1", port=8080)
+    gwh = GitWebhook()
 
-    @app.event(repository="oqwa/gwh", types=['push'])
+    @gwh.event()
     def event():
-        print(app.event['repository'])
-        print(app.event['type'])
-        print(app.event['affected_branches'])
-        print(app.event['raw_data'])
+        print(gwh.event['repository'])
+        print(gwh.event['type'])
+        print(gwh.event['affected_branches'])
+        print(gwh.event['raw_data'])
 
-    app.run()
+If you want to handle push from specific repository:
+
+.. code-block:: python
+
+    @gwh.event(repository="user/repo", types=['push'])
+    def event():
+        if "dev" in gwh.event['affected_branches']:
+            print("pushed")
+
+Finally, you need to pass request from your webserver to GitWebhook handler. It will be Flask in this example:
+
+.. code-block:: python
+
+    from flask import Flask, request
+
+    app = Flask(__name__)
+
+    @app.route("/")
+    def webhook():
+        gwh.handle_request(request.headers, request.data)
 
 Feedback
 --------
