@@ -21,7 +21,7 @@ If you want to handle any event from any repository:
 
 .. code-block:: python
 
-    from gwh import *
+    from gwh import GitWebhook
 
     gwh = GitWebhook()
 
@@ -49,7 +49,7 @@ Finally, you need to pass request from your webserver to GitWebhook handler. It 
 
     app = Flask(__name__)
 
-    @app.route('/')
+    @app.route("/")
     def webhook():
         gwh.handle_request(request.headers, request.data)
 
