@@ -6,7 +6,7 @@ setup(
     version=__import__('gwh').__version__,
     keywords="git webhook flask bitbucket",
     description="Tool for handling Git webhooks based on Flask",
-    long_description=open(join(dirname(__file__), 'README.md')).read(),
+    long_description=open(join(dirname(__file__), 'README.rst')).read(),
     platforms="any",
     author="oqwa",
     author_email="oqwa@inbox.lv",
