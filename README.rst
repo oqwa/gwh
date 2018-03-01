@@ -25,7 +25,7 @@ If you want to handle any event from any repository:
 
     gwh = GitWebhook()
 
-    @gwh.event()
+    @gwh.handle()
     def event():
         print(gwh.event['repository'])
         print(gwh.event['type'])
@@ -36,7 +36,7 @@ If you want to handle push from specific repository:
 
 .. code-block:: python
 
-    @gwh.event(repository="user/repo", types=['push'])
+    @gwh.handle(repository="user/repo", types=['push'])
     def event():
         if "dev" in gwh.event['affected_branches']:
             print("pushed")

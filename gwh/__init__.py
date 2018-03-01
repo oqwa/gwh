@@ -2,7 +2,7 @@ import logging
 import json
 
 
-__version__ = "0.1.8"
+__version__ = "0.1.9"
 __all__ = ['GitWebhook']
 
 
@@ -47,7 +47,7 @@ class GitWebhook:
             "bitbucket": BitbucketParser()
         }
 
-    def event(self, repository=None, types=None):
+    def handle(self, repository=None, types=None):
 
         """
         Decorator to define event handler
