@@ -31,3 +31,15 @@ def check_bitbucket_webhook(app, event_type, repository, branch, hit_expected=Fa
         assert app.event == build_event(event_type, repository, branch, json.loads(data))
     else:
         assert app.event is None
+
+
+def check_gitlab_webhook(app, event_type, repository, branch, hit_expected=False):
+
+    data = '{"event_name": "%s", "ref": "refs/heads/%s", "project": {"path_with_namespace": "%s"}}' % (event_type, branch, repository)
+
+    assert app.handle_request({"X-Gitlab-Event": "any"}, data.encode()) == hit_expected
+
+    if hit_expected:
+        assert app.event == build_event(event_type, repository, branch, json.loads(data))
+    else:
+        assert app.event is None

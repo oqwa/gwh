@@ -3,7 +3,8 @@ GitWebHook
 
 This is a simple tool that will help you handle Git webhooks. Now it supports the following services:
 
-* Bitbucket
+* BitBucket
+* GitLab
 
 
 Installation

@@ -4,7 +4,7 @@ from os.path import join, dirname
 setup(
     name="gwh",
     version=__import__('gwh').__version__,
-    keywords="git webhook bitbucket",
+    keywords="git webhook bitbucket gitlab",
     description="Tool for handling Git webhooks",
     long_description=open(join(dirname(__file__), 'README.rst')).read(),
     platforms="any",
