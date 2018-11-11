@@ -2,7 +2,7 @@ import logging
 import json
 
 
-__version__ = "0.1.10"
+__version__ = "0.1.11"
 __all__ = ['GitWebhook']
 
 
@@ -36,6 +36,29 @@ class BitbucketParser:
         return repository, event, list(set(branches)), data
 
 
+class GitlabParser:
+
+    def __init__(self):
+        pass
+
+    def parse(self, headers, body):
+
+        """
+        Method extract payload from request data to further working
+        :param headers: Dictionary of headers
+        :param body: Bytes of request body
+        :return: Dictionary with payload
+        """
+
+        data = json.loads(body.decode())
+
+        repository = data['project']['path_with_namespace']
+        event = data['event_name']
+        branches = [data['ref'][11:]]
+
+        return repository, event, branches, data
+
+
 class GitWebhook:
 
     def __init__(self):
@@ -44,7 +67,8 @@ class GitWebhook:
 
         self._handlers = {}
         self._parsers = {
-            "bitbucket": BitbucketParser()
+            "bitbucket": BitbucketParser(),
+            "gitlab": GitlabParser()
         }
 
     def handle(self, repository=None, types=None):
@@ -157,5 +181,8 @@ class GitWebhook:
                 return self._parsers['bitbucket']
         except KeyError:
             pass
+
+        if 'X-Gitlab-Event' in headers:
+            return self._parsers['gitlab']
 
         return None
