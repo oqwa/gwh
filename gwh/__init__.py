@@ -2,7 +2,7 @@ import logging
 import json
 
 
-__version__ = "0.1.11"
+__version__ = "0.1.12"
 __all__ = ['GitWebhook']
 
 
@@ -121,7 +121,6 @@ class GitWebhook:
         :return: Status of operation. Boolean. Success or not
         """
 
-        assert isinstance(headers, dict)
         assert isinstance(body, bytes)
 
         try:
